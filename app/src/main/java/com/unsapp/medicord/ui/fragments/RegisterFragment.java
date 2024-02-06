@@ -1,4 +1,4 @@
-package com.unsapp.medicord.ui;
+package com.unsapp.medicord.ui.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -20,10 +20,14 @@ import com.unsapp.medicord.data.models.User;
 public class RegisterFragment extends Fragment {
 
     private EditText etName, etEmail, etPassword;
+    private OnRegisterSuccessListener registerSuccessListener;
 
     private AppDatabase appDatabase;
 
     public RegisterFragment() {}
+
+    // Interface to handle successful registration
+    public interface OnRegisterSuccessListener { void onRegisterSuccess(); }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,9 +89,18 @@ public class RegisterFragment extends Fragment {
         Toast.makeText(requireContext(),"Successfully registered user", Toast.LENGTH_SHORT).show();
 
         // more functionalities
+        System.out.println(registerSuccessListener);
+        if (registerSuccessListener != null){
+            registerSuccessListener.onRegisterSuccess();
+        }
     }
 
     private boolean userAlready(String email){
         return appDatabase.userDao().findByEmail(email);
+    }
+
+    // Method to set the OnRegisterSuccessListener
+    public void setOnRegisterSuccessListener(OnRegisterSuccessListener listener) {
+        this.registerSuccessListener = listener;
     }
 }

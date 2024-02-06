@@ -1,4 +1,4 @@
-package com.unsapp.medicord.ui;
+package com.unsapp.medicord.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import androidx.room.Room;
 import com.unsapp.medicord.R;
 import com.unsapp.medicord.data.database.AppDatabase;
 import com.unsapp.medicord.data.models.User;
+import com.unsapp.medicord.data.viewmodels.UserViewModel;
 
 public class LoginFragment extends Fragment {
 
@@ -21,9 +22,13 @@ public class LoginFragment extends Fragment {
     private AppDatabase appDatabase;
     private OnRegisterClickListener registerClickListener;
     private OnLoginSuccessListener loginSuccessListener;
+    private UserViewModel userViewModel;
+
 
     // Interface to handle clicks on the registration button
     public interface OnRegisterClickListener { void onRegisterClick(); }
+
+    // interface to handle successful logins
     public interface OnLoginSuccessListener { void onLoginSuccess(); }
 
     public LoginFragment() {}
@@ -86,23 +91,30 @@ public class LoginFragment extends Fragment {
         // user not found
         if (user == null){
             Toast.makeText(getContext(), "Incorrect credentials", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         Toast.makeText(getContext(), "Successful login", Toast.LENGTH_SHORT).show();
 
         // more functionalities
-
+        if (loginSuccessListener != null) {
+            userViewModel.setUser(user);
+            loginSuccessListener.onLoginSuccess();
+        }
 
     }
 
+    // set registerClickListener
     public void setOnRegisterClickListener(OnRegisterClickListener listener) {
         this.registerClickListener = listener;
     }
 
-    private void loginSuccess() {
-        if (loginSuccessListener != null) {
-            loginSuccessListener.onLoginSuccess();
-        }
+    // set loginSuccessListener
+    public void setOnLoginSuccessListener(OnLoginSuccessListener listener) {
+        this.loginSuccessListener = listener;
     }
 
+    public void setUserViewModel(UserViewModel userViewModel) {
+        this.userViewModel = userViewModel;
+    }
 }

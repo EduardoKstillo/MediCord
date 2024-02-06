@@ -25,6 +25,11 @@ android {
             )
         }
     }
+
+    viewBinding {
+        enable = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -42,4 +47,7 @@ dependencies {
     val room_version = "2.5.0"
     implementation("androidx.room:room-runtime:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    implementation("androidx.fragment:fragment:1.6.1")
+    runtimeOnly("com.google.android.material:material:1.11.0")
 }
