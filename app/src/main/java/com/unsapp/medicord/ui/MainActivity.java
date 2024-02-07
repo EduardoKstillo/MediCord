@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.unsapp.medicord.R;
-import com.unsapp.medicord.data.models.User;
 import com.unsapp.medicord.data.viewmodels.UserViewModel;
 import com.unsapp.medicord.databinding.ActivityMainBinding;
 import com.unsapp.medicord.ui.fragments.HomeFragment;
