@@ -49,6 +49,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         // Implementa aquí la lógica para posponer la alarma
         // Por ejemplo, puedes reprogramar la alarma para que suene más tarde
         // o cancelar la alarma actual y establecer una nueva alarma para una hora diferente
+
     }
 
 }

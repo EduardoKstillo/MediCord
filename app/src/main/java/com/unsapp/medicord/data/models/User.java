@@ -12,6 +12,7 @@ public class User {
     public String username;
     public String email;
     public String password;
+    public String contacto;
 
     public long getId() {
         return id;
@@ -43,5 +44,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getContacto() {
+        return contacto;
+    }
+    public void setContacto(String contacto) {
+        this.contacto = contacto;
     }
 }

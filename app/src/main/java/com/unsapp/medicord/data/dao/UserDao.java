@@ -10,7 +10,8 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
-
+    @Query("SELECT contacto FROM user WHERE username = :user")
+    String findByContact(String user);
     @Query("SELECT * FROM user WHERE email = :email")
     boolean findByEmail(String email);
 
